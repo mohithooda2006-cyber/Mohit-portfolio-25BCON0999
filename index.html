@@ -1,141 +1,1562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohit Hooda — Personal Profile</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="chatbot.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1020">
+    <meta name="description" content="Mohit's portfolio showcasing programming, web development, Python projects, and AI-assisted coding.">
+    <title>Mohit | Portfolio</title>
+
+    <style>
+        :root {
+            --bg: #f5f7ff;
+            --surface: #ffffff;
+            --surface-alt: #edf1ff;
+            --text: #182033;
+            --muted: #65708a;
+            --primary: #635bff;
+            --border: #dfe4f2;
+            --shadow: 0 12px 35px rgba(35, 45, 90, 0.08);
+            --header-bg: rgba(245, 247, 255, 0.9);
+        }
+
+        body.theme-dark {
+            --bg: #0b1020;
+            --surface: #131a2d;
+            --surface-alt: #1b2440;
+            --text: #eef2ff;
+            --muted: #a8b2ce;
+            --primary: #958bff;
+            --border: #2a3551;
+            --shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            --header-bg: rgba(11, 16, 32, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p,
+        .muted {
+            color: var(--muted);
+        }
+
+        .accent {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 19px;
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--surface-alt);
+        }
+
+        /* Navigation */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.15rem;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            top: 50px;
+            right: -80px;
+            background: var(--primary);
+            opacity: 0.09;
+            filter: blur(90px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--primary);
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            padding: 6px 13px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 7vw, 5rem);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 1.7rem);
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            font-size: 1.08rem;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 27px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* About */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 28px;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .panel h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .panel p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            overflow-wrap: anywhere;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list strong {
+            display: inline-block;
+            min-width: 95px;
+        }
+
+        /* Skills */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 24px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 9px;
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .skill-card p {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        /* Projects */
+
+        .projects-section {
+            background: var(--surface-alt);
+        }
+
+        .project-controls {
+            display: grid;
+            grid-template-columns: minmax(200px, 1fr) auto;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .search-input {
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            background: var(--surface);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 9px 14px;
+            background: var(--surface);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-top {
+            padding: 24px 24px 12px;
+        }
+
+        .project-number {
+            display: inline-grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: var(--surface-alt);
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .project-card h3 {
+            font-size: 1.15rem;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            padding: 0 24px 18px;
+        }
+
+        .tag {
+            background: var(--surface-alt);
+            color: var(--muted);
+            padding: 4px 9px;
+            border-radius: 7px;
+            font-size: 0.78rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 24px 24px;
+            margin-top: auto;
+        }
+
+        .project-links a {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--muted);
+            padding: 35px;
+            background: var(--surface);
+            border-radius: 12px;
+        }
+
+        /* Learning */
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .learning-card {
+            padding: 25px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .learning-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            color: var(--muted);
+        }
+
+        /* Contact */
+
+        .contact-box {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            overflow-wrap: anywhere;
+            margin-bottom: 22px;
+        }
+
+        /* Chatbot */
+
+        .chatbot {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1200;
+        }
+
+        .chat-toggle {
+            width: 58px;
+            height: 58px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-window {
+            position: absolute;
+            right: 0;
+            bottom: 72px;
+            width: min(350px, calc(100vw - 35px));
+            height: 420px;
+            display: none;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-header {
+            padding: 16px;
+            background: var(--primary);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header button {
+            background: transparent;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 90%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            overflow-wrap: anywhere;
+        }
+
+        .message.bot {
+            background: var(--surface-alt);
+            align-self: flex-start;
+        }
+
+        .message.user {
+            background: var(--primary);
+            color: #ffffff;
+            align-self: flex-end;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 7px;
+            padding: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-form input {
+            min-width: 0;
+            flex: 1;
+            padding: 9px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .chat-form button {
+            border: none;
+            border-radius: 8px;
+            padding: 9px 12px;
+            background: var(--primary);
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 25px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 900px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                min-height: 66px;
+            }
+
+            .nav-right {
+                gap: 9px;
+            }
+
+            .menu-toggle {
+                display: grid;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 66px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 5%;
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 12px 0;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .project-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .skill-card {
+                padding: 18px 10px;
+            }
+
+            .panel {
+                padding: 22px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .contact-box {
+                padding: 30px 18px;
+            }
+
+            .chatbot {
+                right: 14px;
+                bottom: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>MOHIT HOODA</h1>
-    <p class="tagline">AI & Machine Learning Undergraduate | Building Intelligent Multi-Agent Workflows & Data-Driven Solutions</p>
-  </header>
-<section id="portfolio-search" class="portfolio-search">
-  <label for="portfolioSearch">Search my portfolio</label>
 
-  <div class="search-box">
-    <span aria-hidden="true">⌕</span>
-    <input
-      type="search"
-      id="portfolioSearch"
-      placeholder="Search skills, projects, Python..."
-      autocomplete="off"
-    >
-  </div>
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="navbar container" aria-label="Main navigation">
+            <a href="#home" class="logo">
+                Mohit<span class="accent">.</span>
+            </a>
 
-  <p id="searchStatus" role="status" aria-live="polite"></p>
-</section>
-  <main>
-    <section id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
-      <p>
-        I am an undergraduate Computer Science student specializing in Artificial Intelligence and Machine Learning, with a strong focus on building intelligent multi-agent workflows, Python automation, and data-driven solutions. Based in Jaipur, India, I enjoy solving complex problems through clean code, exploring modern AI architectures, and continuously turning innovative concepts into scalable, real-world projects.
-      </p>
-    </section>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
 
-    <section id="skills" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <ul>
-        <li>C++</li>
-  
-        <li>C</li>
-        <li>Python</li>
-        <li>Agentic AI</li>
-        <li>DSA</li>
-      </ul>
-    </section>
+                <button class="icon-btn" id="themeToggle"
+                        type="button" aria-label="Switch to dark mode"
+                        title="Change theme">🌙</button>
 
-    <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/python-basics-25BCON0999-fibonacci">FIBONACCI</a>
-          — The Fibonacci Sequence Optimizer is a high-performance algorithmic project designed to explore, benchmark, and compare different computational approaches for generating Fibonacci numbers. Moving beyond standard naive recursion, this project demonstrates optimization techniques including Memoization (Top-Down DP), Tabulation (Bottom-Up DP), and Matrix Exponentiation. Built with a focus on algorithmic complexity and time-space trade-offs, it highlights efficient problem-solving principles essential for robust software engineering.
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/pyhton-basics-25BCON0999-factorial">FACTORIAL</a>
-          — The Factorial Computation & Large Number Analyzer is a robust algorithmic project designed to explore efficient ways to compute factorials and handle large integer overflows. While basic factorial calculation is straightforward, this project dives deeper into iterative vs. recursive paradigms, tail-call optimization, and precision handling for extremely large numbers (beyond standard integer limits) using custom array-based multiplication logic
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/python-basics-25BCON0999-struct-to-dict">STRUCT TO DICT</a>
-          — The Struct-to-Dict Utility is a lightweight, high-performance data serialization tool designed to seamlessly convert complex objects, custom data structures, and dataclasses into standard Python dictionaries—and vice versa. Built to bridge the gap between object-oriented data models and external data formats like JSON, API payloads, or configuration files, this project streamlines data management and preprocessing workflows.
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/reading_list">READING LIST</a>
-          — The Personal Reading List & Book Management Hub is a dynamic web application designed to help users curate, track, and organize their reading journeys. Built with a clean user interface and robust state management, this application allows users to catalog books, track reading status (e.g., Want to Read, Currently Reading, Completed), categorize genres, and maintain a seamless digital bookshelf.
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/correcting-grade-25BCON1071">BUG FIXING IN PYTHON</a>
-          — The Automated Bug Analyzer & Debugging Assistant is a developer-focused utility designed to parse complex error tracebacks, diagnose root causes of runtime and syntax exceptions, and suggest or automatically apply code fixes. By streamlining the debugging workflow, this tool helps developers quickly isolate bugs, understand stack traces, and implement robust error-handling mechanisms across their codebase.
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/correcting-grade-25BCON0999">MESSY PYTHON CODE</a>
-          — The Messy Python Code Cleaner & Refactoring Utility is an automated script and code-quality tool designed to transform unstructured, poorly formatted, or 'messy' Python code into clean, PEP 8-compliant, and maintainable codebases. Utilizing Python's powerful built-in AST (Abstract Syntax Tree) parsing and regex pattern matching, this project automates the tedious process of fixing inconsistent indentation, removing dead code, cleaning up unused imports, and standardizing coding styles across scripts.
-        </li>
-        <li>
-          <a href="https://github.com/mohithooda2006-cyber/QUIZ">QUIZ</a>
-          — The Quiz Application is a web-based quiz platform designed to engage users with interactive question-and-answer sessions. Built with a clean user interface and robust question management system, this application allows users to create quizzes, track progress, and evaluate their knowledge on a variety of topics.
-        </li>
-      </ul>
-    </section>
-  </main>
-  <section id="weather">
-    <h2>Weather</h2>
+                <button class="icon-btn menu-toggle" id="menuToggle"
+                        type="button" aria-label="Open navigation menu"
+                        aria-expanded="false" aria-controls="navLinks">☰</button>
+            </div>
+        </nav>
+    </header>
 
-    <input
-        type="text"
-        id="cityInput"
-        placeholder="Enter a city"
-    >
+    <main>
 
-    <button id="weatherButton">
-        Get Weather
-    </button>
+        <!-- HOME -->
+        <section class="hero container" id="home">
+            <div class="hero-content">
+                <span class="eyebrow">Welcome to my portfolio</span>
 
-    <div id="weatherResult">
-        Enter a city to see the weather.
+                <h1>Hi, I'm <span class="accent">Mohit</span></h1>
+                <h2>Aspiring Software Developer</h2>
+
+                <p>
+                    I am passionate about programming, web development,
+                    and solving problems through technology. I enjoy
+                    learning new tools, building practical projects,
+                    and improving my coding skills.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Projects →
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        Contact Me
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                       target="_blank" rel="noopener noreferrer">
+                        GitHub Profile ↗
+                    </a>
+                    <a href="mailto:mohithooda2006@gmail.com">
+                        Email Me ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section container" id="about">
+            <div class="section-heading">
+                <h2>About <span class="accent">Me</span></h2>
+                <p>A little introduction about me and my interests.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="panel">
+                    <h3>Who Am I?</h3>
+                    <p>
+                        Hello! I'm Mohit, an aspiring software developer
+                        interested in programming, web technologies,
+                        and artificial intelligence tools.
+                    </p>
+                    <p>
+                        My portfolio showcases practical projects that
+                        help me apply programming concepts, understand
+                        debugging, and improve my development workflow.
+                    </p>
+                    <p>
+                        I believe consistent practice, curiosity, and
+                        learning from mistakes are important parts of
+                        becoming a better developer.
+                    </p>
+                </div>
+
+                <div class="panel">
+                    <h3>Quick Information</h3>
+                    <ul class="info-list">
+                        <li><strong>Name:</strong> Mohit</li>
+                        <li><strong>Role:</strong> Aspiring Developer</li>
+                        <li><strong>Interests:</strong> Coding and Web Development</li>
+                        <li><strong>Languages:</strong> Python, C++, JavaScript</li>
+                        <li>
+                            <strong>Email:</strong>
+                            <a class="accent"
+                               href="mailto:mohithooda2006@gmail.com">
+                                mohithooda2006@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <strong>GitHub:</strong>
+                            <a class="accent"
+                               href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                View Repositories ↗
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section container" id="skills">
+            <div class="section-heading">
+                <h2>My <span class="accent">Skills</span></h2>
+                <p>Technologies and areas I practise.</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3>HTML</h3>
+                    <p>Web page structure</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>CSS</h3>
+                    <p>Styling and layouts</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>JavaScript</h3>
+                    <p>Interactive websites</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Programming practice</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>C++</h3>
+                    <p>Programming fundamentals</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🧩</div>
+                    <h3>Problem Solving</h3>
+                    <p>Logical thinking</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>AI Tools</h3>
+                    <p>AI-assisted coding</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Debugging</h3>
+                    <p>Finding and fixing errors</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section projects-section" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>My <span class="accent">Projects</span></h2>
+                    <p>Explore my programming and web development work.</p>
+                </div>
+
+                <div class="project-controls">
+                    <input class="search-input"
+                           id="projectSearch"
+                           type="search"
+                           placeholder="Search projects..."
+                           aria-label="Search projects">
+
+                    <div class="filter-buttons" aria-label="Filter projects">
+                        <button class="filter-btn active" type="button"
+                                data-filter="all" aria-pressed="true">All</button>
+                        <button class="filter-btn" type="button"
+                                data-filter="python" aria-pressed="false">Python</button>
+                        <button class="filter-btn" type="button"
+                                data-filter="web" aria-pressed="false">Web Development</button>
+                        <button class="filter-btn" type="button"
+                                data-filter="ai" aria-pressed="false">AI and Debugging</button>
+                    </div>
+                </div>
+
+                <div class="projects-grid" id="projectsGrid">
+
+                    <article class="project-card"
+                             data-category="web"
+                             data-search="portfolio personal website html css javascript responsive">
+                        <div class="project-top">
+                            <div class="project-number">🌟</div>
+                            <h3>Personal Portfolio Website</h3>
+                            <p>
+                                A responsive website presenting my introduction,
+                                skills, projects, and contact information.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                View GitHub Repositories ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card"
+                             data-category="python"
+                             data-search="python programs collection coding practice beginner programs">
+                        <div class="project-top">
+                            <div class="project-number">🐍</div>
+                            <h3>Python Programs Collection</h3>
+                            <p>
+                                A collection of Python programs for practising
+                                programming concepts, logic, and problem-solving.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Logic</span>
+                            <span class="tag">Practice</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                Find Repository ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card"
+                             data-category="python"
+                             data-search="messy python code improvement refactoring readability clean code">
+                        <div class="project-top">
+                            <div class="project-number">🧹</div>
+                            <h3>Messy Python Code Improvement</h3>
+                            <p>
+                                A code improvement project focused on making
+                                Python code easier to read and maintain.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Refactoring</span>
+                            <span class="tag">Clean Code</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                Find Repository ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card"
+                             data-category="ai"
+                             data-search="bug fixing cursor ai debugging errors coding assistant">
+                        <div class="project-top">
+                            <div class="project-number">🛠️</div>
+                            <h3>Bug Fixing Using Cursor AI</h3>
+                            <p>
+                                A project exploring AI-assisted debugging
+                                to identify errors and improve code.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Debugging</span>
+                            <span class="tag">AI Tools</span>
+                            <span class="tag">Programming</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                Find Repository ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card"
+                             data-category="web"
+                             data-search="code with ai quiz interactive quiz questions answers score">
+                        <div class="project-top">
+                            <div class="project-number">🧠</div>
+                            <h3>Code With AI Quiz</h3>
+                            <p>
+                                An interactive quiz application that lets users
+                                answer questions and check their final score.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                Find Repository ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="project-card"
+                             data-category="web"
+                             data-search="book reading list application books reading list management">
+                        <div class="project-top">
+                            <div class="project-number">📚</div>
+                            <h3>Book Reading List Application</h3>
+                            <p>
+                                A web application project for organizing
+                                and managing a personal reading list.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                               target="_blank" rel="noopener noreferrer">
+                                Find Repository ↗
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div id="noResults" class="no-results" hidden>
+                    No projects found. Try a different search or filter.
+                </div>
+
+                <p id="projectCount" class="muted"
+                   style="text-align:center; margin-top:24px;"
+                   aria-live="polite">Showing 6 projects</p>
+            </div>
+        </section>
+
+        <!-- LEARNING JOURNEY -->
+        <section class="section container" id="learning">
+            <div class="section-heading">
+                <h2>My Learning <span class="accent">Journey</span></h2>
+                <p>Areas I focus on while improving my skills.</p>
+            </div>
+
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <h3>💡 Learn by Building</h3>
+                    <p>
+                        I practise concepts by creating small
+                        applications and projects.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <h3>🔍 Debug and Improve</h3>
+                    <p>
+                        I work on understanding errors and making
+                        code more readable and maintainable.
+                    </p>
+                </div>
+
+                <div class="learning-card">
+                    <h3>🚀 Explore New Tools</h3>
+                    <p>
+                        I explore development tools and learn how
+                        they can support the coding process.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section container" id="contact">
+            <div class="section-heading">
+                <h2>Get in <span class="accent">Touch</span></h2>
+                <p>Feel free to contact me through email or GitHub.</p>
+            </div>
+
+            <div class="contact-box">
+                <h3>Let's Connect!</h3>
+                <p>
+                    Have a question about my projects or want to connect?
+                    You can reach me through the links below.
+                </p>
+
+                <a class="contact-email"
+                   href="mailto:mohithooda2006@gmail.com">
+                    mohithooda2006@gmail.com
+                </a>
+
+                <div class="hero-buttons" style="justify-content:center;">
+                    <a class="btn btn-primary"
+                       href="mailto:mohithooda2006@gmail.com">
+                        ✉ Send Email
+                    </a>
+
+                    <a class="btn btn-outline"
+                       href="https://github.com/mohithooda2006-cyber?tab=repositories"
+                       target="_blank" rel="noopener noreferrer">
+                        GitHub Profile ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>
+                © <span id="currentYear"></span> Mohit.
+                Built with HTML, CSS and JavaScript.
+            </p>
+        </div>
+    </footer>
+
+    <!-- CHATBOT -->
+    <div class="chatbot">
+        <div class="chat-window" id="chatWindow"
+             role="dialog" aria-label="Portfolio chatbot"
+             aria-hidden="true">
+            <div class="chat-header">
+                <div>
+                    <strong>Portfolio Assistant</strong>
+                    <div style="font-size:0.8rem;">
+                        Ask me about this portfolio
+                    </div>
+                </div>
+                <button id="closeChat" type="button"
+                        aria-label="Close chatbot">×</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+                <div class="message bot">
+                    Hi! 👋 Ask me about Mohit, skills, projects,
+                    or contact details.
+                </div>
+            </div>
+
+            <form class="chat-form" id="chatForm">
+                <input id="chatInput" type="text"
+                       placeholder="Type your question..."
+                       aria-label="Your question"
+                       autocomplete="off" required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
+        <button class="chat-toggle" id="chatToggle"
+                type="button" aria-label="Open chatbot"
+                aria-expanded="false">💬</button>
     </div>
-</section>
-<section id="aiChatSection" class="ai-chat">
-  <h2>Ask My AI Assistant</h2>
 
-  <p>
-    Ask questions about this portfolio,
-    projects, and technologies.
-  </p>
+    <script>
+        // THEME TOGGLE
 
-  <div
-    id="chatMessages"
-    aria-live="polite"
-  ></div>
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
 
-  <div class="chat-controls">
-    <input
-      type="text"
-      id="userInput"
-      placeholder="Ask a question..."
-    />
+        function applyTheme(theme) {
+            const isDark = theme === "dark";
+            body.classList.toggle("theme-dark", isDark);
+            themeToggle.textContent = isDark ? "☀️" : "🌙";
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+            );
+        }
 
-    <button id="sendButton" type="button">
-      Send
-    </button>
-  </div>
+        let savedTheme = null;
 
-  <p id="chatStatus" role="status"></p>
+        try {
+            savedTheme = localStorage.getItem("profile-theme");
+        } catch (error) {
+            savedTheme = null;
+        }
 
-  <p class="chat-note">
-    AI chat is available during the local
-    classroom demonstration only.
-  </p>
-</section>
-  <footer>
-    <p>Contact: mohithooda2006@gmail.com</p>
-  </footer>
-  <button id="themeToggle">Switch to Dark Mode</button>
-  <script src="script.js"></script>
-  <script src="config.js"></script>
-  <script src="chatbot.js"></script>
+        if (savedTheme === "dark" || savedTheme === "light") {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light"
+            );
+        }
+
+        themeToggle.addEventListener("click", function () {
+            const newTheme = body.classList.contains("theme-dark")
+                ? "light"
+                : "dark";
+
+            applyTheme(newTheme);
+
+            try {
+                localStorage.setItem("profile-theme", newTheme);
+            } catch (error) {
+                // The theme still works if storage is unavailable.
+            }
+        });
+
+
+        // MOBILE NAVIGATION
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("is-open");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+            menuToggle.textContent = isOpen ? "✕" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("is-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation menu");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+
+        // PROJECT SEARCH AND FILTERS
+
+        const projectSearch = document.getElementById("projectSearch");
+        const projectCards = Array.from(
+            document.querySelectorAll(".project-card")
+        );
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const projectCount = document.getElementById("projectCount");
+        const noResults = document.getElementById("noResults");
+
+        let activeFilter = "all";
+
+        function updateProjects() {
+            const searchTerm = projectSearch.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            projectCards.forEach(function (card) {
+                const category = card.dataset.category || "";
+                const searchableText = (
+                    card.innerText + " " + (card.dataset.search || "")
+                ).toLowerCase();
+
+                const matchesFilter =
+                    activeFilter === "all" || category === activeFilter;
+
+                const matchesSearch =
+                    searchableText.includes(searchTerm);
+
+                const isVisible = matchesFilter && matchesSearch;
+
+                card.hidden = !isVisible;
+
+                if (isVisible) {
+                    visibleCount++;
+                }
+            });
+
+            noResults.hidden = visibleCount !== 0;
+            projectCount.textContent =
+                "Showing " + visibleCount +
+                (visibleCount === 1 ? " project" : " projects");
+        }
+
+        projectSearch.addEventListener("input", updateProjects);
+
+        filterButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                activeFilter = button.dataset.filter;
+
+                filterButtons.forEach(function (item) {
+                    const isActive = item === button;
+                    item.classList.toggle("active", isActive);
+                    item.setAttribute("aria-pressed", String(isActive));
+                });
+
+                updateProjects();
+            });
+        });
+
+        updateProjects();
+
+
+        // FOOTER YEAR
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+
+        // PORTFOLIO FAQ CHATBOT
+        // This is a rule-based chatbot, not a live AI service.
+
+        const chatToggle = document.getElementById("chatToggle");
+        const chatWindow = document.getElementById("chatWindow");
+        const closeChat = document.getElementById("closeChat");
+        const chatForm = document.getElementById("chatForm");
+        const chatInput = document.getElementById("chatInput");
+        const chatMessages = document.getElementById("chatMessages");
+
+        function setChatOpen(isOpen) {
+            chatWindow.classList.toggle("open", isOpen);
+            chatWindow.setAttribute("aria-hidden", String(!isOpen));
+            chatToggle.setAttribute("aria-expanded", String(isOpen));
+
+            if (isOpen) {
+                chatInput.focus();
+            }
+        }
+
+        chatToggle.addEventListener("click", function () {
+            setChatOpen(!chatWindow.classList.contains("open"));
+        });
+
+        closeChat.addEventListener("click", function () {
+            setChatOpen(false);
+            chatToggle.focus();
+        });
+
+        function addMessage(text, sender) {
+            const message = document.createElement("div");
+            message.className = "message " + sender;
+            message.textContent = text;
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotReply(question) {
+            const q = question.toLowerCase();
+
+            if (
+                q.includes("hello") ||
+                q.includes("hi") ||
+                q.includes("hey")
+            ) {
+                return "Hello! 👋 Welcome to Mohit's portfolio. Ask me about skills, projects, or contact information.";
+            }
+
+            if (
+                q.includes("who are you") ||
+                q.includes("about") ||
+                q.includes("introduce") ||
+                q.includes("mohit")
+            ) {
+                return "This portfolio belongs to Mohit, an aspiring software developer interested in programming, web development, and AI-assisted coding.";
+            }
+
+            if (
+                q.includes("skill") ||
+                q.includes("technology") ||
+                q.includes("language")
+            ) {
+                return "The listed skills include HTML, CSS, JavaScript, Python, C++, problem-solving, AI tools, and debugging.";
+            }
+
+            if (q.includes("project") || q.includes("work")) {
+                return "The portfolio lists six projects: Personal Portfolio Website, Python Programs Collection, Messy Python Code Improvement, Bug Fixing Using Cursor AI, Code With AI Quiz, and Book Reading List Application.";
+            }
+
+            if (q.includes("python")) {
+                return "The Python Programs Collection is for programming practice. The portfolio also lists a project about improving Python code.";
+            }
+
+            if (q.includes("quiz") || q.includes("score")) {
+                return "The Code With AI Quiz is an interactive quiz project. Visit Mohit's GitHub repositories to find the source code.";
+            }
+
+            if (q.includes("book") || q.includes("reading")) {
+                return "The Book Reading List Application is a web project intended to help organize a personal reading list.";
+            }
+
+            if (
+                q.includes("ai") ||
+                q.includes("cursor") ||
+                q.includes("debug")
+            ) {
+                return "The portfolio includes a Bug Fixing Using Cursor AI project focused on AI-assisted debugging and improving code quality.";
+            }
+
+            if (
+                q.includes("email") ||
+                q.includes("contact") ||
+                q.includes("reach")
+            ) {
+                return "You can contact Mohit at mohithooda2006@gmail.com.";
+            }
+
+            if (
+                q.includes("github") ||
+                q.includes("source code") ||
+                q.includes("repository") ||
+                q.includes("repo")
+            ) {
+                return "Visit Mohit's GitHub profile: https://github.com/mohithooda2006-cyber?tab=repositories";
+            }
+
+            if (q.includes("dark mode") || q.includes("theme")) {
+                return "Click the moon or sun button in the navigation bar to switch between light and dark themes.";
+            }
+
+            if (q.includes("search") || q.includes("filter")) {
+                return "In the Projects section, type in the search box or choose All, Python, Web Development, or AI and Debugging to filter projects.";
+            }
+
+            if (q.includes("responsive") || q.includes("mobile")) {
+                return "The page uses responsive CSS media queries so the layout adjusts to smaller screens, including mobile navigation.";
+            }
+
+            if (
+                q.includes("html") ||
+                q.includes("css") ||
+                q.includes("javascript")
+            ) {
+                return "HTML structures the page, CSS controls its appearance and responsive layout, and JavaScript powers theme switching, project filters, navigation, and this FAQ chatbot.";
+            }
+
+            return "I can answer questions about Mohit's introduction, skills, projects, GitHub, contact details, dark mode, and project filters. Try asking about one of these topics!";
+        }
+
+        chatForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const question = chatInput.value.trim();
+
+            if (!question) {
+                return;
+            }
+
+            addMessage(question, "user");
+            chatInput.value = "";
+
+            addMessage(getBotReply(question), "bot");
+            chatInput.focus();
+        });
+    </script>
+
 </body>
 </html>
